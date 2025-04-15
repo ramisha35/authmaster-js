@@ -1,0 +1,28 @@
+{
+  "name": "authmaster",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "A robust and developer-friendly authentication and authorization system for Node.js applications. Built with Express.js, JWT, it includes secure user registration, login, protected routes, and role-based access control.",
+  "main": "App.js",
+  "scripts": {
+    "start": "node App.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ramisha35/authmaster-js.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ramisha35/authmaster-js/issues"
+  },
+  "homepage": "https://github.com/ramisha35/authmaster-js#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "mongoose": "^8.13.2"
+  }
+}
