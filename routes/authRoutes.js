@@ -3,6 +3,8 @@
   import bcrypt from 'bcrypt';
   import {conflictError, notFoundError, unauthorizedError} from '../exceptions/index.js'; // barrel pattern import
   import { asyncHandler } from '../middlewares/asyncHandler.js';
+  import { generateToken } from '../services/jwtService.js';
+  import { authenticate, authorizeRoles } from '../middlewares/authMiddleware.js'; 
 
   const router = express.Router();
 
@@ -30,10 +32,11 @@
       const isValid = await bcrypt.compare(password, user.passwordHash);
       if (!isValid) throw new unauthorizedError('Invalid credentials');
     
-      res.status(200).json({ id: user._id, mail: user.mail });
+      const token = generateToken(user);
+      res.status(200).json({ token });
     }));
     
-    router.get('/getAll', asyncHandler(async (req, res) => {
+    router.get('/getAll', authenticate, authorizeRoles('Admin'),asyncHandler(async (req, res) => {
       const users = await User.find();
     
       const result = users.map(user => ({

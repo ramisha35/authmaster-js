@@ -18,5 +18,4 @@ export async function seedAdmin() {
   });
 
   await admin.save();
-  console.log('✅ Admin user seeded');
 }
