@@ -3,16 +3,20 @@ import dotenv from 'dotenv';
 import authRoutes from './routes/authRoutes.js';
 import { errorHandler } from './middlewares/globalErrorHandling.js';
 import { connectToDatabase } from './config/database.js';
+import { seedAdmin } from './config/seedAdmin.js';
+
 
 dotenv.config();
 
 const app = express();
 
 await connectToDatabase();
+await seedAdmin();
+
 
 
 app.use(express.json());
-app.use('/api/auth', authRoutes);
+app.use('/api', authRoutes);
 app.use(errorHandler);
 
 app.listen(3000, () => {
