@@ -19,7 +19,10 @@
       const user = new User({ name, surname, mail, passwordHash });
       await user.save();
     
-      res.status(201).json({ id: user._id, mail: user.mail });
+      const userResponse = user.toObject();
+      delete userResponse.passwordHash;
+    
+      res.status(201).json(userResponse);
     }));
     
 

@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "type": "module",
   "description": "A robust and developer-friendly authentication and authorization system for Node.js applications. Built with Express.js, JWT, it includes secure user registration, login, protected routes, and role-based access control.",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
