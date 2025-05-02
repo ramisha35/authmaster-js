@@ -1,10 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import authRoutes from './routes/authRoutes.js';
-import { errorHandler } from './middlewares/globalErrorHandling.js';
-import { connectToDatabase } from './config/database.js';
-import { seedAdmin } from './config/seedAdmin.js';
-
+import { authRoutes, errorHandler, connectToDatabase, seedAdmin} from './index.js';
 
 dotenv.config();
 

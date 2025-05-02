@@ -1,13 +1,9 @@
-  import express from 'express';
-  import User from '../models/user.js';
-  import bcrypt from 'bcrypt';
-  import {conflictError, notFoundError, unauthorizedError} from '../exceptions/index.js'; // barrel pattern import
-  import { asyncHandler } from '../middlewares/asyncHandler.js';
-  import { generateToken } from '../services/jwtService.js';
-  import { authenticate, authorizeRoles } from '../middlewares/authMiddleware.js'; 
+import express from 'express';
+import bcrypt from 'bcrypt';
+import { User, conflictError, notFoundError, unauthorizedError, 
+  asyncHandler, generateToken, authenticate, authorizeRoles} from '../index.js';
 
   const router = express.Router();
-
 
   router.post('/auth/register', asyncHandler(async (req, res) => {
       const { name, surname, mail, password } = req.body;
@@ -36,7 +32,7 @@
       if (!isValid) throw new unauthorizedError('Invalid credentials');
     
       const token = generateToken(user);
-      res.status(200).json({ token });
+      res.status(200).json({token : token });
     }));
     
     router.get('/getAll', authenticate, authorizeRoles('Admin'),asyncHandler(async (req, res) => {
