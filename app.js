@@ -9,8 +9,6 @@ const app = express();
 await connectToDatabase();
 await seedAdmin();
 
-
-
 app.use(express.json());
 app.use('/api', authRoutes);
 app.use(errorHandler);

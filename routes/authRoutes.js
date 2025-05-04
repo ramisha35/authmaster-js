@@ -6,13 +6,13 @@ import { User, conflictError, notFoundError, unauthorizedError,
   const router = express.Router();
 
   router.post('/auth/register', asyncHandler(async (req, res) => {
-      const { name, surname, mail, password } = req.body;
+      const { name, surname, mail, password, phone} = req.body;
     
       const existing = await User.findOne({ mail });
       if (existing) throw new conflictError('User already exists');
-    
+
       const passwordHash = await bcrypt.hash(password, 10);
-      const user = new User({ name, surname, mail, passwordHash });
+      const user = new User({ name, surname, mail, passwordHash, phone });
       await user.save();
     
       const userResponse = user.toObject();
@@ -33,20 +33,6 @@ import { User, conflictError, notFoundError, unauthorizedError,
     
       const token = generateToken(user);
       res.status(200).json({token : token });
-    }));
-    
-    router.get('/getAll', authenticate, authorizeRoles('Admin'),asyncHandler(async (req, res) => {
-      const users = await User.find();
-    
-      const result = users.map(user => ({
-        id: user._id,
-        name: user.name,
-        surname: user.surname,
-        mail: user.mail,
-        role: user.role,
-      }));
-    
-      res.status(200).json(result);
     }));
     
     export default router;

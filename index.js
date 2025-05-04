@@ -16,7 +16,8 @@ export { authenticate,
 export { errorHandler }               from './middlewares/globalErrorHandling.js';
 
 /* 4. Models */
-export { default as User }            from './models/user.js';
+export {default as User, default as Court, default as Booking, 
+    default as Review, default as TeacherProfile,default as Lesson}            from './models/user.js';
 
 /* 5. Services */
 export { generateToken,
